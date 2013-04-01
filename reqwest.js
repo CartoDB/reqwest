@@ -105,7 +105,7 @@
       , script = doc.createElement('script')
       , loaded = 0
       , isIE10 = navigator.userAgent.indexOf('MSIE 10.0') !== -1
-      , isIE9 = navigator.userAgent.indexOf('MSIE 9') !== -1
+      , isIE9 = navigator.userAgent.indexOf('MSIE 9.0') !== -1;
 
     if (match) {
       if (match[3] === '?') {
