@@ -495,13 +495,18 @@
     return callbackPrefix
   }
 
+  // evaluates f if it's a function or returns the actual value
+  function getValue(f) {
+    return typeof(f) === 'function' ? f(): f;
+  }
+
   // jQuery and Zepto compatibility, differences can be remapped here so you can call
   // .ajax.compat(options, callback)
   reqwest.compat = function (o, fn) {
     if (o) {
       o.type && (o.method = o.type) && delete o.type
       o.dataType && (o.type = o.dataType)
-      o.jsonpCallback && (o.jsonpCallbackName = o.jsonpCallback) && delete o.jsonpCallback
+      o.jsonpCallback && (o.jsonpCallbackName = getValue(o.jsonpCallback)) && delete o.jsonpCallback
       o.jsonp && (o.jsonpCallback = o.jsonp)
     }
     return new Reqwest(o, fn)
